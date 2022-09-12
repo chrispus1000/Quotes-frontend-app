@@ -9,11 +9,12 @@ function Comment({comments, setComments}) {
     }
 
     const commentsToDisplay = comments.map(commentObj => {
-        const {comment, user, id} = commentObj
+        const {comment, user, id, word} = commentObj
 
         return (
             <div className="comment" key={id}>
                 <p>{comment} -<em>{user}</em></p>
+                <p>{word}</p>
                 <button onClick={() => handleDelete(id)}>🗑️</button>
             </div>
         )

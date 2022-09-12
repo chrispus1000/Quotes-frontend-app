@@ -12,12 +12,14 @@ function Random() {
     })
     const [comments, setComments] = useState([])
 
+    fetchAdvice();
     function fetchAdvice() {
         fetch(`http://localhost:9292/words/random`)
         .then(resp => resp.json())
         .then(data => {
             setWordObj(data)
-            setComments(data.comments)
+            setComments(data)
+            console.log(data);
         })
     }
 
@@ -25,12 +27,13 @@ function Random() {
 
     useEffect(fetchAdvice, [])
 
+
     return (
         <div>
             <button onClick={fetchAdvice}>Click Me for New Advice!</button>
             <h1>"{word}"</h1>
             <h2> - {user} </h2>
-            <hr />
+            
             <Comment comments={comments} setComments={setComments} />
             <CommentForm word_id={id} comments={comments} setComments={setComments}/>
         </div>
